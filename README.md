@@ -135,7 +135,7 @@ Ran into some issues so I just deleted the database following these instructions
 - Run the command python manage.py makemigrations or python3 manage.py makemigrations
 - Then run the command python manage.py migrate.
 
-Then created new instances of both Bookmark and Note:
+Then created new instances of both Bookmark and Note in `./manage.py shell`:
 
     `from bookmarks.models import Bookmark`
     `new_bookmark = Bookmark(title="Yahoo", description="search stuff here", url="http://www.yahoo.com")`
@@ -174,7 +174,9 @@ Create a new user with limited access
     from .models import Note in admin.py
     admin.site.Register(Note)
 
-Input in your Note model:
+Adding a field to your Note model:
+
+Add this to your notes model:
 
     category = models.CharField(max_length=20)
 
@@ -191,19 +193,23 @@ In terminal:
 ## Django Database Under the Hood:
 
 To actually look at the django database("under the hood"):
-./manage.py dbshell
+
+    ./manage.py dbshell
 
 Take a look at the tables:
-.tables
+
+    .tables
 
 You can see all the tables we have, those we created like (note_note, notes_personalnote, bookmarks_bookmark), and those we didn't. We saw these in our initial migration.
 
+
+
     .headers on
-    .mode column
+    .mode column # These two commands just make the output more visually organized
+    SELECT * FROM notes_note; # returns a table of all your notes
+    SELECT * FROM notes_personalnote; # returns a table of all your personal notes
 
 With SQL you have to use a semi-colon...if you don't it will show ..> prompting you to add a more to your command.
-    `SELECT * FROM notes_note;`
-    `SELECT * FROM notes_note;`
 
 DO NOT TYPE THIS IN:  As an example, if <COMMAND HERE> -- FINISH THIS
 
