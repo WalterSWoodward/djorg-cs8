@@ -18,11 +18,13 @@ from django.urls import path, include
 # from django.conf.urls import url, include
 from rest_framework import routers
 from notes.api import NoteViewset, PersonalNoteViewset
+from bookmarks.api import BookmarkViewset
 
 router = routers.DefaultRouter()
 router.register(r'notes', NoteViewset) # Bryan used NoteViewset here... :/
 # router.register(r'kittens', 'KittenViewS   et') # Add your Bookmark class like this
 router.register(r'personal_notes', PersonalNoteViewset)
+router.register(r'bookmarks', BookmarkViewset)
 
 urlpatterns = [ # SOMETHING IS WRONG HERE??
     path('admin/', admin.site.urls),
