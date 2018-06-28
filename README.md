@@ -214,6 +214,54 @@ With SQL you have to use a semi-colon...if you don't it will show ..> prompting 
 DO NOT TYPE THIS IN:  As an example, if <COMMAND HERE> -- FINISH THIS
 
 
+## DAY 3
+
+Based on:
+http://www.django-rest-framework.org/
+
+    pipenv install djangorestframework
+    pipenv install markdown
+    pipenv install django-filter
+
+Paste this in urls.py, inside urlspatter:
+ url(r'^api-auth/', include('rest_framework.urls'))
+
+Paste this at the bottom of settings.py:
+
+ REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+Import urls.py:
+
+    from django.conf.urls import url
+
+Create `api.py` in notes:
+
+    from rest_framework import serializers
+
+A serializer turns data from complex structures into machine language (e.g. 10101010001001110) to be sent across the internet.
+
+
+# TESTING Day 3 Work:
+
+Navigate to localhost:8000/api/
+
+Click on the personal_notes url:
+
+    http://localhost:8000/api/personal_notes/
+
+POST a new personal note
+
+
+
+
+
+
 
 
 
