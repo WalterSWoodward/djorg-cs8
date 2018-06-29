@@ -32,8 +32,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'bookmarks', # My STUFF
-    'notes',
+    # 'bookmarks', # My STUFF
+    # 'notes',
     'rest_framework', # Other Stuff
     'rest_framework.authtoken',
     'django.contrib.admin', # Other other stuff
