@@ -86,8 +86,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djorg.wsgi.application'
-application = WhiteNoise(WSGI_APPLICATION, root='/path/to/static/files')
+# Wrapping App with WhiteNoise
+
+application = WhiteNoise(application, root='/path/to/static/files')
 application.add_files('/path/to/more/static/files', prefix='more-files/')
 
 
