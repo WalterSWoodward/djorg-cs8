@@ -26,7 +26,7 @@ router.register(r'notes', NoteViewset) # Bryan used NoteViewset here... :/
 router.register(r'personal_notes', PersonalNoteViewset)
 router.register(r'bookmarks', BookmarkViewset)
 
-urlpatterns = [ # SOMETHING IS WRONG HERE??
-    path('admin/', admin.site.urls),
+urlpatterns = [
+    path('admin/', admin.site.urls), # Do I need to change something here?
     path(r'api/', include(router.urls)),
 ]

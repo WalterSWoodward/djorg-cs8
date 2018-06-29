@@ -89,6 +89,9 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
 # DATABASES['default'] = dj_database_url.parse('postgres://...', conn_max_age=600)
 
 # Heroku Databases
