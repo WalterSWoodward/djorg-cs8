@@ -13,9 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import dj_database_url
 from decouple import config # Gives us access to config library
-from whitenoise import WhiteNoise
 from boto.s3.connection import S3Connection
-from djorg import application
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -87,10 +85,7 @@ TEMPLATES = [
     },
 ]
 
-# Wrapping App with WhiteNoise
 
-application = WhiteNoise(application, root='/path/to/static/files')
-application.add_files('/path/to/more/static/files', prefix='more-files/')
 
 
 # Database
