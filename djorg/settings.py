@@ -15,6 +15,7 @@ import dj_database_url
 from decouple import config # Gives us access to config library
 from whitenoise import WhiteNoise
 from boto.s3.connection import S3Connection
+from djorg import application
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
