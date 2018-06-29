@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
-
+import django
+django.setup()
 import os
-
+import dj_database_url
 from decouple import config # Gives us access to config library
+from boto.s3.connection import S3Connection
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,8 +29,19 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool) # Need this to convert incoming type string to bool
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ALLOWED_HOSTS']
 
+
+# WHITENOISE: http://whitenoise.evans.io/en/stable/
+MIDDLEWARE_CLASSES = [
+  # 'django.middleware.security.SecurityMiddleware',
+  'whitenoise.middleware.WhiteNoiseMiddleware',
+  # ...
+]
+
+# HEROKU 
+
+s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
 # Application definition
 
@@ -73,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djorg.wsgi.application'
+
 
 
 # Database
@@ -85,6 +98,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
