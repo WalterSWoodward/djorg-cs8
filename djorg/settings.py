@@ -8,6 +8,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from decouple import config
+import dj_database_url
 
 from decouple import config # Gives us access to config library
 
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # 'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,12 +80,21 @@ WSGI_APPLICATION = 'djorg.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# Local Version:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'DATABASE_URL': dj_database_url.parse('postgres://...', conn_max_age=600) # Seems to be working...?
     }
 }
+
+# DATABASES['default'] = dj_database_url.parse('postgres://...', conn_max_age=600)
+
+# Heroku Databases
+# DATABASES = {
+#     'default': dj_database_url.config(default='DATABASE_URL')
+# }
 
 
 # Password validation
