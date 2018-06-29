@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-
+import dj_database_url
 from decouple import config # Gives us access to config library
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,6 +28,14 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool) # Need this to convert incoming type string to bool
 
 ALLOWED_HOSTS = []
+
+
+# WHITENOISE: http://whitenoise.evans.io/en/stable/
+MIDDLEWARE_CLASSES = [
+  # 'django.middleware.security.SecurityMiddleware',
+  'whitenoise.middleware.WhiteNoiseMiddleware',
+  # ...
+]
 
 
 # Application definition
@@ -86,6 +94,7 @@ DATABASES = {
     }
 }
 
+DATABASE['default'] = dj_database_url.config('DATABASE_URL')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

@@ -11,6 +11,7 @@ markdown = "*"
 django-filter = "*"
 gunicorn = "*"
 "psycopg2-binary" = "*"
+# More info on this here: https://github.com/kennethreitz/dj-database-url
 dj-database-url = "*"
 whitenoise = "*"
 
