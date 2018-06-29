@@ -136,6 +136,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+# This is BETTER --> http://whitenoise.evans.io/en/stable/django.html
 # After adding this, ran: `python manage.py collectstatic` in shell at root.  CSS Works!
 
 STATIC_URL = '/static/'
